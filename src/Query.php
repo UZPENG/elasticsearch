@@ -777,6 +777,11 @@ class Query
             $query["scroll"] = $scroll;
         }
 
+        // add client timeout
+        $config = app()['config']['es'];
+        $query['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $query['client']['timeout'] = $config['client']['timeout'];
+
         return $query;
     }
 
@@ -1048,6 +1053,11 @@ class Query
             $parameters["id"] = $this->_id;
         }
 
+        // add client timeout
+        $config = app()['config']['es'];
+        $parameters['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $parameters['client']['timeout'] = $config['client']['timeout'];
+
         return (object)$this->connection->index($parameters);
     }
 
@@ -1089,6 +1099,11 @@ class Query
 
         }
 
+        // add client timeout
+        $config = app()['config']['es'];
+        $params['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $params['client']['timeout'] = $config['client']['timeout'];
+
         return (object)$this->connection->bulk($params);
     }
 
@@ -1118,6 +1133,11 @@ class Query
         if ($type = $this->getType()) {
             $parameters["type"] = $type;
         }
+
+        // add client timeout
+        $config = app()['config']['es'];
+        $parameters['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $parameters['client']['timeout'] = $config['client']['timeout'];
 
         return (object)$this->connection->update($parameters);
     }
@@ -1179,6 +1199,11 @@ class Query
             $parameters["type"] = $type;
         }
 
+        // add client timeout
+        $config = app()['config']['es'];
+        $parameters['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $parameters['client']['timeout'] = $config['client']['timeout'];
+
         return (object)$this->connection->update($parameters);
     }
 
@@ -1206,6 +1231,11 @@ class Query
         if ($type = $this->getType()) {
             $parameters["type"] = $type;
         }
+
+        // add client timeout
+        $config = app()['config']['es'];
+        $parameters['client']['connect_timeout'] = $config['client']['connect_timeout'];
+        $parameters['client']['timeout'] = $config['client']['timeout'];
 
         return (object)$this->connection->delete($parameters);
     }
