@@ -44,13 +44,18 @@ return [
 
             // Elasticsearch handlers
             // 'handler' => new MyCustomHandler(),
-            
+
             'logging' => [
                 'enabled'   => env('ELASTIC_LOGGING_ENABLED',false),
                 'level'     => env('ELASTIC_LOGGING_LEVEL','all'),
                 'location'  => env('ELASTIC_LOGGING_LOCATION',base_path('storage/logs/elasticsearch.log'))
-            ],            
+            ],
         ]
+    ],
+
+    'client' => [
+        "connect_timeout" => env('BASEMKHIRAT_ELASTIC_CONNECT_TIMEOUT', 2.0),
+        "timeout" => env('BASEMKHIRAT_ELASTIC_TIMEOUT', 5.0),
     ],
 
     /*
