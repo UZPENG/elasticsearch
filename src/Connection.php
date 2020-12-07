@@ -3,6 +3,7 @@
 namespace Basemkhirat\Elasticsearch;
 
 use Elasticsearch\ClientBuilder;
+use Elasticsearch\ConnectionPool\Selectors\RandomSelector;
 
 /**
  * Class Connection
@@ -63,6 +64,8 @@ class Connection
         }
 
         $clientBuilder->setHosts($config["servers"]);
+        $clientBuilder->setRetries(0);
+        $clientBuilder->setSelector(RandomSelector::class);
 
         $clientBuilder = self::configureLogging($clientBuilder,$config);
 
@@ -104,6 +107,8 @@ class Connection
             $clientBuilder = ClientBuilder::create();
 
             $clientBuilder->setHosts($config["servers"]);
+            $clientBuilder->setRetries(0);
+            $clientBuilder->setSelector(RandomSelector::class);
 
             $clientBuilder = self::configureLogging($clientBuilder,$config);
 
